@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bharani's Bistro - All in One</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            scroll-behavior: smooth;
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            background: rgba(92, 46, 0, 0.95);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar a {
+            color: #ffe !important;
+            font-weight: bold;
+        }
+        
+        .navbar a:hover,
+        .navbar a.active {
+            color: #ffc107 !important;
+        }
+        
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+        /* NEW Professional Content Box Style */
+        
+        .content-box {
+            background-color: rgba(255, 253, 248, 0.97);
+            /* A warm, high-end off-white */
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            margin-top: 4rem;
+        }
+        /* Hero section content (no background box) */
+        
+        .hero-content {
+            z-index: 2;
+            position: relative;
+            text-align: center;
+            color: #fff;
+        }
+        
+        h1,
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #5c2e00;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        h1 {
+            font-size: 3rem;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+        }
+        
+        h3 {
+            font-family: 'Playfair Display', serif;
+            color: #5c2e00;
+            font-weight: 600;
+        }
+        
+        .food-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #fff;
+            text-shadow: 1px 1px 3px #000;
+            font-size: 2.5rem;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(12px);
+            transition: all 0.4s ease-in-out;
+            height: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+        
+        .service-card .bi {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #ffc107;
+        }
+        /* Contact/Reservation Form Styling */
+        
+        .form-section {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 3rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+        
+        .form-section h2 {
+            color: #fff;
+            text-shadow: 1px 1px 3px #000;
+        }
+        
+        .form-section .form-label {
+            color: #ffc107;
+        }
+        
+        .form-section .form-control {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #000;
+            /* Black text */
+        }
+        
+        .form-section .form-control::placeholder {
+            color: #555;
+        }
+        
+        .form-section .form-control:focus {
+            background: rgba(255, 255, 255, 1);
+            border-color: #ffc107;
+            box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+            color: #000;
+            /* Black text */
+        }
+        
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+            height: 100%;
+            min-height: 400px;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 500px;
+            border: 0;
+        }
+        
+        footer {
+            background: rgba(92, 46, 0, 0.95);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 0;
+        }
+        
+        .social-icons a {
+            color: #ffc107;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: #fff;
+        }
+        /* === NEW CSS FOR SHOPPING CART === */
+        
+        .order-box {
+            background: #fffaf0;
+            /* FloralWhite, very premium */
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+            color: #333;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .order-box h3 {
+            color: #5c2e00;
+            border-bottom: 2px solid #deb887;
+            padding-bottom: 10px;
+        }
+        
+        .cart-item-name {
+            font-weight: bold;
+        }
+        
+        .cart-item-price {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .remove-item {
+            color: #dc3545;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+            padding: 0 5px;
+        }
+        
+        .remove-item:hover {
+            color: #a71d2a;
+        }
+        /* === NEW CSS FOR CHEF'S SPECIALS CARD === */
+        
+        .special-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .special-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .special-card .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        /* === NEW CSS FOR GALLERY === */
+        
+        .gallery-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+        /* === NEW CSS FOR TESTIMONIALS === */
+        
+        .testimonial-card {
+            background: #fffaf0;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+            border-left: 5px solid #deb887;
+        }
+        
+        .testimonial-card p {
+            font-style: italic;
+            color: #555;
+        }
+        
+        .testimonial-card .client-name {
+            font-weight: bold;
+            color: #5c2e00;
+            margin-top: 1rem;
+            display: block;
+        }
+        /* === NEW CSS FOR MENU MODAL === */
+        
+        .modal-header {
+            background-color: #5c2e00;
+            color: #fff;
+        }
+        
+        .modal-header .btn-close {
+            filter: invert(1) grayscale(100) brightness(200%);
+        }
+        
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .menu-modal-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .menu-modal-item div {
+            flex-basis: 70%;
+        }
+        
+        .menu-modal-item .price-action {
+            flex-basis: 30%;
+            text-align: right;
+        }
+        
+        .menu-modal-item strong {
+            color: #5c2e00;
+        }
+        
+        .menu-modal-item small {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .menu-modal-item .price {
+            font-weight: bold;
+            color: #333;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#home">
+                <img src="https://logowik.com/content/uploads/images/restaurant9491.logowik.com.webp" alt="Bharani's Bistro Logo" width="60" height="50" class="me-2"> Bharani's Bistro
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reservations">Reservations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <section id="home" style="background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836') no-repeat center center/cover;">
+        <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); z-index:1;"></div>
+        <div class="container hero-content">
+            <h1 class="display-4 fw-bold mb-3 animate__animated animate__fadeInDown">Welcome to Bharani's Bistro</h1>
+            <p class="lead animate__animated animate__fadeInUp">Where every bite tells a story of flavor, tradition, and warmth.</p>
+            <div class="mt-4 mb-4">
+                <i class="bi bi-emoji-heart-eyes fs-1 text-warning mx-2"></i>
+                <i class="bi bi-star-fill fs-1 text-warning mx-2"></i>
+                <i class="bi bi-egg-fried fs-1 text-warning mx-2"></i>
+            </div>
+            <p class="fs-5 mx-auto" style="max-width: 800px;">
+                At Bharani's Bistro, we believe in cooking with heart and soul. Our dishes are inspired by timeless traditions and made with the freshest ingredients.
+            </p>
+            <a href="#menu" class="btn btn-warning btn-lg mt-3 animate__animated animate__pulse animate__infinite">Explore Our Menu</a>
+        </div>
+    </section>
+
+    <section id="about" style="background: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') no-repeat center center/cover;">
+        <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); z-index:1;"></div>
+        <div class="container hero-content">
+            <h2 class="display-5 fw-bold mb-3 animate__animated animate__fadeInLeft" style="color: #fff; text-shadow: 1px 1px 3px #000;">About Bharani's Bistro</h2>
+            <p class="lead animate__animated animate__fadeInRight">Crafted with tradition, served with care.</p>
+            <div class="mt-3 mb-4">
+                <i class="bi bi-person-heart fs-1 text-warning mx-2"></i>
+                <i class="bi bi-people-fill fs-1 text-warning mx-2"></i>
+                <i class="bi bi-flower1 fs-1 text-warning mx-2"></i>
+            </div>
+            <p class="fs-5 mx-auto animate__animated animate__fadeInUp" style="max-width: 850px;">
+                Bharani's Bistro is more than a restaurant — it's a place where food, culture, and love blend into every plate. From humble beginnings to heartfelt dining, our journey has been driven by passion for authentic flavors and warm hospitality.
+            </p>
+        </div>
+    </section>
+
+    <section id="menu" style="background: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38') no-repeat center center/cover;">
+        <div class="container">
+            <h2 class="section-title">Menu & Order</h2>
+
+            <div class="row g-5">
+                <div class="col-lg-8">
+                    <div class="content-box">
+                        <h3>Chef's Specials</h3>
+                        <p class="text-muted">Our most popular dishes, loved by everyone. Add them to your order right away!</p>
+                        <div class="row g-4 mt-3">
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card special-card h-100" data-name="Paneer Butter Masala" data-price="120">
+                                    <img src="https://tse2.mm.bing.net/th/id/OIP.1AIg84BkjTxgSdUPp-rXgwHaHa?pid=Api&P=0&h=180" class="card-img-top" alt="Paneer Butter Masala">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Paneer Butter Masala</h5>
+                                        <p class="card-text text-muted small">Cottage cheese in a rich tomato cream sauce.</p>
+                                        <div class="mt-auto">
+                                            <span class="fs-5 fw-bold text-dark">₹120</span>
+                                            <button class="btn btn-warning btn-sm add-to-cart float-end">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card special-card h-100" data-name="Masala Dosa" data-price="60">
+                                    <img src="https://tse4.mm.bing.net/th/id/OIP.i6iSYZMGbRDEX-KOZV_RSAHaHa?pid=Api&P=0&h=180" class="card-img-top" alt="Masala Dosa">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Masala Dosa</h5>
+                                        <p class="card-text text-muted small">South Indian crepe with spicy potato filling.</p>
+                                        <div class="mt-auto">
+                                            <span class="fs-5 fw-bold text-dark">₹60</span>
+                                            <button class="btn btn-warning btn-sm add-to-cart float-end">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card special-card h-100" data-name="Veg Biryani" data-price="100">
+                                    <img src="https://tse1.mm.bing.net/th/id/OIP.on2HkbI42hccuyQhsKo_LQHaE7?pid=Api&P=0&h=180" class="card-img-top" alt="Veg Biryani">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">Veg Biryani</h5>
+                                        <p class="card-text text-muted small">Fragrant rice with mixed vegetables and spices.</p>
+                                        <div class="mt-auto">
+                                            <span class="fs-5 fw-bold text-dark">₹100</span>
+                                            <button class="btn btn-warning btn-sm add-to-cart float-end">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#menuModal">
+                                <i class="bi bi-book-fill me-2"></i> View Full Menu
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" style="margin-top: 4rem;">
+                    <div class="order-box">
+                        <h3 class="text-center mb-3">Your Order</h3>
+                        <ul id="cart-items" class="list-group list-group-flush mb-3" style="max-height: 400px; overflow-y: auto; background: transparent;">
+                            <li class="list-group-item d-flex justify-content-between align-items-center text-muted" style="background: transparent;">
+                                Your cart is empty.
+                            </li>
+                        </ul>
+                        <h4 class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
+                            <span>Total:</span>
+                            <strong id="cart-total">₹0.00</strong>
+                        </h4>
+                        <button class="btn btn-success w-100 mt-3" id="place-order">
+                            <i class="bi bi-bag-check-fill me-2"></i> Place Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" style="background: url('https://images.unsplash.com/photo-1551218808-94e220e084d2') no-repeat center center/cover;">
+        <main class="container py-5">
+            <h2 class="section-title">What We Offer</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="service-card"> <i class="bi bi-cup-hot"></i>
+                        <h5 class="card-title">Dine-In</h5>
+                        <p class="card-text">Enjoy a cozy dine-in experience with friendly staff.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card"> <i class="bi bi-bag-fill"></i>
+                        <h5 class="card-title">Takeaway</h5>
+                        <p class="card-text">Quick and hygienic takeaway options for all menu items.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card"> <i class="bi bi-truck"></i>
+                        <h5 class="card-title">Home Delivery</h5>
+                        <p class="card-text">We deliver hot and fresh meals right to your doorstep.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <section id="gallery" class="bg-light">
+        <div class="container">
+            <h2 class="text-center">Our Culinary Gallery</h2>
+            <p class="text-center text-muted mb-4">A glimpse into the heart of our kitchen.</p>
+            <div class="row g-4">
+                <div class="col-md-4"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38" alt="Gallery Image 1" class="gallery-img"></div>
+                <div class="col-md-4"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd" alt="Gallery Image 2" class="gallery-img"></div>
+                <div class="col-md-4"><img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856" alt="Gallery Image 3" class="gallery-img"></div>
+                <div class="col-md-4"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1" alt="Gallery Image 4" class="gallery-img"></div>
+                <div class="col-md-4"><img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445" alt="Gallery Image 5" class="gallery-img"></div>
+                <div class="col-md-4"><img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929" alt="Gallery Image 6" class="gallery-img"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" style="background: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4') no-repeat center center/cover;">
+        <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); z-index:1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p>"The best Paneer Butter Masala I've ever had! The ambiance is cozy and the staff is wonderful. Highly recommended!"</p>
+                        <span class="client-name">- Priya S.</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p>"Bharani's Bistro is our go-to for family dinners. The Veg Biryani is always fresh and flavorful. A true gem in Chennai."</p>
+                        <span class="client-name">- Ramesh K.</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p>"I ordered catering for a small party and everyone was impressed. The Chilli Gobi was a huge hit! Professional service."</p>
+                        <span class="client-name">- Anjali V.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reservations" style="background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5') no-repeat center center/cover;">
+        <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); z-index:1;"></div>
+        <main class="container" style="position: relative; z-index: 2;">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="form-section">
+                        <h2 class="text-center">Make a Reservation</h2>
+                        <p class="text-center text-light mb-4">Book your table online. We will call you to confirm.</p>
+                        <form id="reservationForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="resName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="resName" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="resPhone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="resPhone" placeholder="098765 43210" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="resDate" class="form-label">Date</label>
+                                    <input type="date" class="form-control" id="resDate" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="resTime" class="form-label">Time</label>
+                                    <input type="time" class="form-control" id="resTime" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="resGuests" class="form-label">Number of Guests</label>
+                                    <input type="number" class="form-control" id="resGuests" min="1" placeholder="2" required>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-warning btn-lg">Request Booking</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <section id="contact" style="background: url('https://images.unsplash.com/photo-1541542684-4c483c5c52c0') no-repeat center center/cover;">
+        <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); z-index:1;"></div>
+        <main class="container" style="position: relative; z-index: 2;">
+            <div class="form-section">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <h2 class="text-center text-lg-start">Get in Touch</h2>
+                        <p><i class="bi bi-telephone-fill"></i> <a href="tel:9360455523" class="text-warning text-decoration-none">93604 55523</a></p>
+                        <p><i class="bi bi-envelope-fill"></i> <a href="mailto:bharani.bistro@gmail.com" class="text-warning text-decoration-none">bharani.bistro@gmail.com</a></p>
+                        <p style="color:#ffc107"><i class="bi bi-geo-alt-fill"></i> Mount Road, Chennai, India</p>
+                        <div class="social-icons mt-4 mb-4">
+                            <a href="#"><i class="bi bi-instagram"></i></a>
+                            <a href="#"><i class="bi bi-facebook"></i></a>
+                            <a href="#"><i class="bi bi-twitter"></i></a>
+                            <a href="#"><i class="bi bi-youtube"></i></a>
+                        </div>
+
+                        <form id="contactForm">
+                            <h3 class="h4" style="color: #fff;">Send us a message</h3>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="3" placeholder="Your message..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-warning">Send Message</button>
+                        </form>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3973604.5116091077!2d81.5164588984375!3d13.44490509031275!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526647c977dd31%3A0x652eeb05107197a4!2sAnna%20Salai%2C%20Chennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1761576183975!5m2!1sen!2sin"
+                                width="600" height="800" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <footer>
+        <div class="social-icons mb-3">
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-youtube"></i></a>
+        </div>
+        © 2025 Bharani's Bistro. Crafted with flavor and finesse.
+    </footer>
+
+    <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="menuModalLabel">Our Full Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <ul class="nav nav-tabs" id="menuTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="appetizers-tab" data-bs-toggle="tab" data-bs-target="#appetizers" type="button" role="tab">Appetizers</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="mains-tab" data-bs-toggle="tab" data-bs-target="#mains" type="button" role="tab">Main Courses</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="breads-tab" data-bs-toggle="tab" data-bs-target="#breads" type="button" role="tab">Breads</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="desserts-tab" data-bs-toggle="tab" data-bs-target="#desserts" type="button" role="tab">Desserts</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="menuTabsContent">
+
+                        <div class="tab-pane fade show active" id="appetizers" role="tabpanel">
+                            <ul class="list-unstyled mt-3">
+                                <li class="menu-modal-item" data-name="Chilli Gobi" data-price="80">
+                                    <div><strong>Chilli Gobi</strong><br><small>Crispy cauliflower in Indo-Chinese sauce</small></div>
+                                    <div class="price-action"><span class="price">₹80</span><button class="btn btn-outline-warning btn-sm add-to-cart">Add</button></div>
+                                </li>
+                                <li class="menu-modal-item" data-name="Veg Samosa (2 pcs)" data-price="40">
+                                    <div><strong>Veg Samosa (2 pcs)</strong><br><small>Crispy pastry with potato and pea filling</small></div>
+                                    <div class="price-action"><span class="price">₹40</span><button class="btn btn-outline-warning btn-sm add-to-cart">Add</button></div>
+                                </li>
+                                <li class="menu-modal-item" data-name="Gobi 65" data-price="85">
+                                    <div><strong>Gobi 65</strong><br><small>Spicy, deep-fried cauliflower</small></div>
+                                    <div class="price-action"><span class="price">₹85</span><button class="btn btn-outline-warning btn-sm add-to-cart">Add</button></div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-pane fade" id="mains" role="tabpanel">
+                            <ul class="list-unstyled mt-3">
+                                <li class="menu-modal-item" data-name="Paneer Butter Masala" data-price="120">
+                                    <div><strong>Paneer Butter Masala</strong><br><small>Cottage cheese in rich tomato cream sauce</small></div>
+                                    <div class="price-action"><span class="price">₹120</span><button class="btn btn-outline-warning btn-sm add-to-cart">Add</button></div>
+                                </li>
+                                <li class="menu-modal-item" data-name="Masala Dosa" data-price="60">
+                                    <div><strong>Masala Dosa</strong><br><small>South Indian crepe with spicy potato filling</small></div>
+                                    <div class="price-action"><span class="price">₹60</span><button class="btn btn-outline-warning btn-sm add-to-cart">Add</button></div>
+                                </li>
+                                <li class="menu-modal-item" data-name="Veg Biryani" data-price="100">
+                                    <div><strong>Veg Biryani</strong><br><small>Fragrant rice with mixed vegetables and spices</small></div>
+                                    <div class="price-action"><span class="price">₹100</span><button class="btn btn-outline-warning btn-sm add-to-cart">Add</button></div>
+                                </li>
+                                <li class="menu-modal-item" data-name="Dal Makhani" data-price="110">
+                                    <div><strong>Dal Makhani</strong><br><small>Creamy black lentils cooked slowly</small></div>
+                                    <div class="price-action"><span class="price">₹110</span><button class="btn btn-outline-warning btn-sm add-to-cart">Add</button></div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-pane fade" id="breads" role="tabpanel">
+                            <ul class="list-unstyled mt-3">
+                                <li class="menu-modal-item" data-name="Butter Naan" data-price="30">
+                                    <div><strong>Butter Naan</strong><br><small>Soft Indian flatbread with butter</small></div>
+                                    <div class="price-action"><span class="price">₹30</span><button class="btn btn-outline-warning btn-sm add-to-cart">Add</button></div>
+                                </li>
+                                <li class="menu-modal-item" data-name="Roti" data-price="20">
+                                    <div><strong>Tandoori Roti</strong><br><small>Whole wheat bread cooked in tandoor</small></div>
+                                    <div class="price-action"><span class="price">₹20</span><button class="btn btn-outline-warning btn-sm add-to-cart">Add</button></div>
+                                </li>
+                                <li class="menu-modal-item" data-name="Garlic Naan" data-price="40">
+                                    <div><strong>Garlic Naan</strong><br><small>Naan bread topped with fresh garlic</small></div>
+                                    <div class="price-action"><span class="price">₹40</span><button class="btn btn-outline-warning btn-sm add-to-cart">Add</button></div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-pane fade" id="desserts" role="tabpanel">
+                            <ul class="list-unstyled mt-3">
+                                <li class="menu-modal-item" data-name="Ice Cream Sundae" data-price="50">
+                                    <div><strong>Ice Cream Sundae</strong><br><small>Vanilla & chocolate scoops with syrup</small></div>
+                                    <div class="price-action"><span class="price">₹50</span><button class="btn btn-outline-warning btn-sm add-to-cart">Add</button></div>
+                                </li>
+                                <li class="menu-modal-item" data-name="Gulab Jamun (2 pcs)" data-price="40">
+                                    <div><strong>Gulab Jamun (2 pcs)</strong><br><small>Sweet milk-solid dumplings in syrup</small></div>
+                                    <div class="price-action"><span class="price">₹40</span><button class="btn btn-outline-warning btn-sm add-to-cart">Add</button></div>
+                                </li>
+                                <li class="menu-modal-item" data-name="Filter Coffee" data-price="25">
+                                    <div><strong>Filter Coffee</strong><br><small>Strong South Indian filter coffee</small></div>
+                                    <div class="price-action"><span class="price">₹25</span><button class="btn btn-outline-warning btn-sm add-to-cart">Add</button></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            const endpoint = 'http://localhost:3000/api/contact';
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        message
+                    }),
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    alert(result.message);
+                    document.getElementById('contactForm').reset();
+                } else {
+                    alert('Error: Could not send message.');
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                alert('Error: Could not connect to the server.');
+            }
+        });
+    </script>
+
+    <script>
+        document.getElementById('reservationForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const name = document.getElementById('resName').value;
+            const phone = document.getElementById('resPhone').value;
+            const date = document.getElementById('resDate').value;
+            const time = document.getElementById('resTime').value;
+            const guests = document.getElementById('resGuests').value;
+
+            const endpoint = 'http://localhost:3000/api/reservation';
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name,
+                        phone,
+                        date,
+                        time,
+                        guests
+                    }),
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    alert(result.message);
+                    document.getElementById('reservationForm').reset();
+                } else {
+                    alert('Error: Could not send reservation request.');
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                alert('Error: Could not connect to the server.');
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            let cart = [];
+            const cartItemsList = document.getElementById('cart-items');
+            const cartTotalEl = document.getElementById('cart-total');
+            const placeOrderButton = document.getElementById('place-order');
+
+            document.addEventListener('click', function(event) {
+                if (event.target.classList.contains('add-to-cart')) {
+                    const itemElement = event.target.closest('[data-name]');
+                    if (itemElement) {
+                        const name = itemElement.dataset.name;
+                        const price = parseFloat(itemElement.dataset.price);
+                        addItemToCart(name, price);
+                    }
+                }
+
+                if (event.target.classList.contains('remove-item')) {
+                    const name = event.target.dataset.name;
+                    removeItemFromCart(name);
+                }
+            });
+
+            placeOrderButton.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    alert("Your cart is empty! Please add some items first.");
+                    return;
+                }
+
+                const total = calculateTotal().toFixed(2);
+                alert(`Order placed successfully!\nTotal Amount: ₹${total}\n\nThank you for ordering!`);
+                cart = [];
+                updateCartDisplay();
+            });
+
+            function addItemToCart(name, price) {
+                const existingItem = cart.find(item => item.name === name);
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cart.push({
+                        name,
+                        price,
+                        quantity: 1
+                    });
+                }
+                updateCartDisplay();
+            }
+
+            function removeItemFromCart(name) {
+                const itemIndex = cart.findIndex(item => item.name === name);
+                if (itemIndex > -1) {
+                    const item = cart[itemIndex];
+                    item.quantity--;
+                    if (item.quantity === 0) {
+                        cart.splice(itemIndex, 1);
+                    }
+                    updateCartDisplay();
+                }
+            }
+
+            function calculateTotal() {
+                return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            }
+
+            function updateCartDisplay() {
+                if (cart.length === 0) {
+                    cartItemsList.innerHTML = `
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-muted" style="background: transparent;">
+                            Your cart is empty.
+                        </li>`;
+                    cartTotalEl.innerText = '₹0.00';
+                    return;
+                }
+
+                cartItemsList.innerHTML = '';
+
+                cart.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item d-flex justify-content-between align-items-center';
+                    li.style.background = 'transparent';
+
+                    const itemTotal = (item.price * item.quantity).toFixed(2);
+
+                    li.innerHTML = `
+                        <div>
+                            <span class="cart-item-name">${item.name}</span> 
+                            (x${item.quantity})<br>
+                            <small class="cart-item-price">₹${item.price.toFixed(2)} each</small>
+                        </div>
+                        <div>
+                            <strong>₹${itemTotal}</strong>
+                            <span class="remove-item" data-name="${item.name}" title="Remove one">×</span>
+                        </div>
+                    `;
+                    cartItemsList.appendChild(li);
+                });
+
+                cartTotalEl.innerText = `₹${calculateTotal().toFixed(2)}`;
+            }
+        });
+    </script>
+</body>
+
+</html>
