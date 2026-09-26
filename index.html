@@ -230,6 +230,20 @@
             transition: all 0.3s ease;
         }
         .fab-booking:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 8px 25px rgba(255, 193, 7, 0.7); }
+        
+        /* Mobile Navbar Horizontal layout */
+        @media (max-width: 991px) {
+            .navbar-nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+                padding-top: 15px;
+            }
+            .nav-item {
+                flex: 0 0 auto;
+            }
+        }
     </style>
 </head>
 
